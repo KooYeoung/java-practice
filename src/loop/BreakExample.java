@@ -13,6 +13,7 @@ public class BreakExample {
 
       System.out.println("\n======================================================");
 
+      // outer: for  이와같이 label 을 만들어서 외부 의 for문을 종료 할수 잇음.,
       outer: for  (int i = 0; i <= 2; i++) {
          for (int j = 0; j <= i; j++) {
             if (i == j) break outer;
