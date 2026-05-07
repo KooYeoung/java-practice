@@ -1,3 +1,5 @@
+package basic;
+
 public class javaStarter {
 
    // 출력함수 main
