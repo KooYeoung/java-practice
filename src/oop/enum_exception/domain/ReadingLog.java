@@ -7,8 +7,8 @@ public class ReadingLog extends LearningActivity implements Reviewable, Shareabl
 
    private String bookTitle;
 
-   public ReadingLog(String title, int minutes, Visibility visibility, String bookTitle, ActivityCategory category) {
-      super(title, minutes, visibility,category);
+   public ReadingLog(String title, int minutes, Visibility visibility, String bookTitle) {
+      super(title, minutes, visibility,ActivityCategory.READING);
       this.bookTitle = bookTitle;
    }
 

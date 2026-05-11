@@ -1,6 +1,7 @@
 package oop.enum_exception.app;
 
 import oop.enum_exception.domain.*;
+import oop.enum_exception.exception.InvalidActivityException;
 import oop.enum_exception.policy.Reviewable;
 import oop.enum_exception.policy.Shareable;
 import oop.enum_exception.printer.ActivityPrinter;
@@ -13,9 +14,9 @@ public class SprintLogApp {
       // ── 1. 기본 활동 목록 ──────────────────────────────────────────
       // boolean 대신 Visibility enum으로 공개 상태를 표현한다.
       LearningActivity[] activities = {
-            new LectureLog("Java enum 기초", 50, Visibility.PUBLIC, "박코치", ActivityCategory.LECTURE),
-            new PracticeLog("예외 처리 실습", 80, Visibility.PUBLIC, 90,ActivityCategory.PRACTICE),
-            new ReadingLog("객체지향의 사실과 오해", 35, Visibility.PRIVATE, "조영호", ActivityCategory.READING)
+            new LectureLog("Java enum 기초", 50, Visibility.PUBLIC, "박코치"),
+            new PracticeLog("예외 처리 실습", 80, Visibility.PUBLIC, 90),
+            new ReadingLog("객체지향의 사실과 오해", 35, Visibility.PRIVATE, "조영호")
       };
 
       ActivityPrinter printer = new ConsoleActivityPrinter();
@@ -31,6 +32,25 @@ public class SprintLogApp {
       System.out.println("ordinal(): " + ActivityCategory.LECTURE.ordinal());
       System.out.println("label:     " + ActivityCategory.LECTURE.getLabel());
       printCategoryGuide(ActivityCategory.PRACTICE);
+
+      // ── 3. 잘못된 입력 → 예외 시연 ───────────────────────────────
+      System.out.println();
+      System.out.println("=== 잘못된 입력 처리 ===");
+
+      try {
+         new LectureLog("", 50, Visibility.PUBLIC, "박코치");
+      } catch (InvalidActivityException e) {
+         System.out.println("등록 실패: " + e.getMessage());
+      }
+
+      try {
+         new PracticeLog("예외 실습", -10, Visibility.PUBLIC, 110);
+      } catch (InvalidActivityException e) {
+         System.out.println("등록 실패: " + e.getMessage());
+      }
+
+      System.out.println();
+      System.out.println("총 생성된 활동 수: " + LearningActivity.getTotalCreatedCount());
 
    }
 

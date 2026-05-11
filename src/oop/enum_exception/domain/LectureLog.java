@@ -8,8 +8,8 @@ public class LectureLog extends LearningActivity implements Reviewable, Shareabl
 
    public String instructorName; // 강사 이름 (LectureLog만 가지는 고유한 필드)
 
-   public LectureLog(String title, int minutes, Visibility visibility, String instructorName, ActivityCategory category) {
-      super(title, minutes, visibility, category);
+   public LectureLog(String title, int minutes, Visibility visibility, String instructorName) {
+      super(title, minutes, visibility, ActivityCategory.LECTURE);
       this.instructorName = normalizeInstructorName(instructorName);
    }
 

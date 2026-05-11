@@ -9,8 +9,8 @@ public class PracticeLog extends LearningActivity implements Reviewable, Shareab
 
    private int completionRate; // PracticeLog만 가지는 고유한 필드
 
-   public PracticeLog(String title, int minutes, Visibility visibility, int completionRate, ActivityCategory category) {
-      super(title, minutes, visibility, category);
+   public PracticeLog(String title, int minutes, Visibility visibility, int completionRate) {
+      super(title, minutes, visibility, ActivityCategory.PRACTICE);
       this.completionRate = normalizeCompletionRate(completionRate);
    }
 
