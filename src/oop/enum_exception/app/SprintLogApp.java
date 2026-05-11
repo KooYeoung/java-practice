@@ -1,0 +1,54 @@
+package oop.enum_exception.app;
+
+import oop.enum_exception.domain.*;
+import oop.enum_exception.policy.Reviewable;
+import oop.enum_exception.policy.Shareable;
+import oop.enum_exception.printer.ActivityPrinter;
+import oop.enum_exception.printer.CompactActivityPrinter;
+import oop.enum_exception.printer.ConsoleActivityPrinter;
+
+public class SprintLogApp {
+
+   public static void main(String[] args) {
+      // ── 1. 기본 활동 목록 ──────────────────────────────────────────
+      // boolean 대신 Visibility enum으로 공개 상태를 표현한다.
+      LearningActivity[] activities = {
+            new LectureLog("Java enum 기초", 50, Visibility.PUBLIC, "박코치", ActivityCategory.LECTURE),
+            new PracticeLog("예외 처리 실습", 80, Visibility.PUBLIC, 90,ActivityCategory.PRACTICE),
+            new ReadingLog("객체지향의 사실과 오해", 35, Visibility.PRIVATE, "조영호", ActivityCategory.READING)
+      };
+
+      ActivityPrinter printer = new ConsoleActivityPrinter();
+      System.out.println("=== 학습 활동 목록 ===");
+      for (LearningActivity activity : activities) {
+         printer.print(activity);
+      }
+
+      // ── 2. enum 기본 메서드 시연 ───────────────────────────────────
+      System.out.println();
+      System.out.println("=== enum 기본 정보 ===");
+      System.out.println("name():    " + ActivityCategory.LECTURE.name());
+      System.out.println("ordinal(): " + ActivityCategory.LECTURE.ordinal());
+      System.out.println("label:     " + ActivityCategory.LECTURE.getLabel());
+      printCategoryGuide(ActivityCategory.PRACTICE);
+
+   }
+
+   /** switch 문 + enum 조합 시연. */
+   private static void printCategoryGuide(ActivityCategory category) {
+      // 정수나 문자열 이외에 Enum도 switch의 괄호 안에 기준으로 사용할수 있습니다.
+      switch (category) {
+         case LECTURE  -> System.out.println("강의: 핵심 개념을 놓치지 않았는지 확인합니다.");
+         case PRACTICE -> System.out.println("실습: 직접 손으로 흐름을 만들어보는 것이 중요합니다.");
+         case READING  -> System.out.println("독서: 짧게 읽어도 정리 품질이 중요합니다.");
+      }
+   }
+}
+
+
+
+
+
+
+
+
